@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class TaskAdapter extends BaseAdapter {
-    private LayoutInflater mLayoutInflater = null;
+    private LayoutInflater mLayoutInflater=null;
     private List<Task> mTaskList;
 
     public TaskAdapter(Context context) {

@@ -19,7 +19,7 @@ import io.realm.Sort;
 
 
 public class MainActivity extends AppCompatActivity {
-    public final static String Extra_Task = "com.example.shimazakishota.taskapp.TASK";
+    public final static String EXTRA_TASK = "com.example.shimazakishota.taskapp.TASK";
     private Realm mRealm;
     private RealmChangeListener mRealmListener = new RealmChangeListener() {
         @Override
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-      
+
         mRealm = Realm.getDefaultInstance();
         mRealm.addChangeListener(mRealmListener);
 
@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                // タスクを削除する
+
 
                 final Task task = (Task) parent.getAdapter().getItem(position);
 
-                // ダイアログを表示する
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
                 builder.setTitle("削除");
@@ -114,5 +114,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         reloadListView();
+    }
+
+    private void reloadListView() {
+
+        RealmResults<Task> taskRealmResults = mRealm.where(Task.class).findAll().sort("date", Sort.DESCENDING);
+
+        mTaskAdapter.setTaskList(mRealm.copyFromRealm(taskRealmResults));
+
+        mListView.setAdapter(mTaskAdapter);
+
+        mTaskAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mRealm.close();
     }
 }
