@@ -75,14 +75,14 @@ public class InputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
 
-        // ActionBarを設定する
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        // UI部品の設定
+
         mDateButton = (Button) findViewById(R.id.date_button);
         mDateButton.setOnClickListener(mOnDateClickListener);
         mTimeButton = (Button) findViewById(R.id.times_button);
@@ -160,7 +160,7 @@ public class InputActivity extends AppCompatActivity {
 
         realm.close();
 
-        Intent resultIntent = new Intent(getApplicationContext(), TaskAlarmReceiver.class);
+        Intent resultIntent = new Intent(getApplicationContext(), TaskAlermReceiver.class);
         resultIntent.putExtra(MainActivity.EXTRA_TASK, mTask.getId());
         PendingIntent resultPendingIntent = PendingIntent.getBroadcast(
                 this,

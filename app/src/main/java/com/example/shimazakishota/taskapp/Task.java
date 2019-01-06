@@ -7,11 +7,11 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Task extends RealmObject implements Serializable {
-    private String title; // タイトル
-    private String contents; // 内容
-    private Date date; // 日時
+    private String title;
+    private String contents;
+    private Date date;
 
-    // id をプライマリーキーとして設定
+
     @PrimaryKey
     private int id;
 

@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         results.deleteAllFromRealm();
                         mRealm.commitTransaction();
 
-                        Intent resultIntent = new Intent(getApplicationContext(), TaskAlarmReceiver.class);
+                        Intent resultIntent = new Intent(getApplicationContext(), TaskAlermReceiver.class);
                         PendingIntent resultPendingIntent = PendingIntent.getBroadcast(
                                 MainActivity.this,
                                 task.getId(),

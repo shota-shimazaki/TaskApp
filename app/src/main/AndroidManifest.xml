@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package=" com.example.shimazakishota.taskapp">
+    package="com.example.shimazakishota.taskapp">
 
     <application
         android:name=".TaskApp"
@@ -30,10 +30,6 @@
                 android:value=" com.example.shimazakishota.taskapp.MainActivity" />
         </activity>
 
-        <receiver
-            android:name="com.example.shimazakishota.taskapp.TaskAlermReceiver"
-            android:enabled="true"
-            android:exported="true"></receiver>
     </application>
 
 </manifest>
