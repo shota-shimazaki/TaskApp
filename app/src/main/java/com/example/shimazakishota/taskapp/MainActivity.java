@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
@@ -25,6 +26,7 @@ import io.realm.Sort;
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_TASK = "com.example.shimazakishota.taskapp.TASK";
     private Realm mRealm;
+
     private RealmChangeListener mRealmListener = new RealmChangeListener() {
         @Override
         public void onChange(Object element) {
@@ -34,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private TaskAdapter mTaskAdapter;
     EditText mEditText;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         mEditText = (EditText) findViewById(R.id.category_edit_text);
         Button button = (Button) findViewById(R.id.button);
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mEditText.getText().toString();
+                RealmResults<Task> result = mRealm.where(Task.class).equalTo("category", mEditText.getText().toString()).findAll();
             }
         });
 
