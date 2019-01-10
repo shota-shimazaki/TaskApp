@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_TASK = "com.example.shimazakishota.taskapp.TASK";
     private Realm mRealm;
 
+
     private RealmChangeListener mRealmListener = new RealmChangeListener() {
         @Override
         public void onChange(Object element) {
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEditText = (EditText) findViewById(R.id.category_edit_text);
+
+
+        mEditText = (EditText) findViewById(R.id.editText);
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -51,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mEditText.getText().toString();
                 RealmResults<Task> result = mRealm.where(Task.class).equalTo("category", mEditText.getText().toString()).findAll();
+
+                mTaskAdapter.setTaskList(mRealm.copyFromRealm(result));
+
+                mListView.setAdapter(mTaskAdapter);
+
+                mTaskAdapter.notifyDataSetChanged();
             }
         });
 
