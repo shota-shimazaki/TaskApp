@@ -28,6 +28,7 @@ public class InputActivity extends AppCompatActivity {
     private EditText mTitleEdit, mContentEdit, mCategoryEdit;
     private Task mTask;
     private View.OnClickListener mOnDateClickListener = new View.OnClickListener() {
+
         @Override
         public void onClick(View v) {
             DatePickerDialog datePickerDialog = new DatePickerDialog(InputActivity.this,
@@ -93,10 +94,12 @@ public class InputActivity extends AppCompatActivity {
         mCategoryEdit=(EditText) findViewById(R.id.category_edit_text);
 
 
+
         Intent intent = getIntent();
         int taskId = intent.getIntExtra(MainActivity.EXTRA_TASK, -1);
         Realm realm = Realm.getDefaultInstance();
         mTask = realm.where(Task.class).equalTo("id", taskId).findFirst();
+
         realm.close();
 
         if (mTask == null) {
@@ -112,6 +115,7 @@ public class InputActivity extends AppCompatActivity {
             mTitleEdit.setText(mTask.getTitle());
             mContentEdit.setText(mTask.getContents());
             mCategoryEdit.setText(mTask.getCategory());
+
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(mTask.getDate());
@@ -154,6 +158,7 @@ public class InputActivity extends AppCompatActivity {
 
         mTask.setTitle(title);
         mTask.setContents(content);
+        mTask.setCategory(category);
         GregorianCalendar calendar = new GregorianCalendar(mYear, mMonth, mDay, mHour, mMinute);
         Date date = calendar.getTime();
         mTask.setDate(date);
